@@ -16,6 +16,11 @@ def api():
 
 @app.route('/api/literature', methods=['GET'])
 def literature():
-    return jsonify(fs.documentList('literature'))
+    try:
+        return jsonify({'error': False, 'message': 'Literature fetch successfully ', 'literature': fs.documentList('literature')})
+    except:
+        return jsonify({'error': True,'message':'Literature fetch failed ','literature': ""})
+
 
 app.run(host="localhost", port=5000, debug=True)
+
